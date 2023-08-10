@@ -7,7 +7,7 @@
       placeholder="Search for books to add to your reading list"
       formControlName="term"
     />
-    <button mat-icon-button matSuffix>
+    <button mat-icon-button matSuffix id="searach-book-id" aria-label="Search Book">
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>
@@ -21,7 +21,7 @@
       </div>
       <div class="book--content">
         <div class="book--content--cover">
-          <img alt="Cover Image" src="{{ b.coverUrl }}" />
+          <img alt="{{b.title}} book cover image" src="{{ b.coverUrl }}" />
         </div>
         <div class="book--content--info">
           <div><strong>Author:</strong> {{ b.authors.join(',') }}</div>
@@ -34,10 +34,11 @@
             <button
               mat-flat-button
               color="primary"
+              [attr.aria-label]="'Add ' + b.title + ' book to reading list'"
               (click)="addBookToReadingList(b)"
               [disabled]="b.isAdded"
             >
-              Want to Read
+              {{ b.isFinished ?'Finished.' : 'Want to Read' }}
             </button>
           </div>
         </div>

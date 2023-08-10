@@ -19,6 +19,15 @@
     flex-direction: column;
     justify-content: center;
   }
+  .read-finished {
+    color: green;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .read-btn-section{
+    flex-direction: row;
+  }
 }
 
 .reading-list-item--cover {

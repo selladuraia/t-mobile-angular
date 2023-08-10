@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { BooksPartialState } from './books.reducer';
-import { getBooks } from './books.selectors';
+import { BooksPartialState } from '../book-search/books.reducer';
+import { getBooks } from '../book-search/books.selectors';
 import {
   READING_LIST_FEATURE_KEY,
   readingListAdapter,
@@ -35,7 +35,7 @@ export const getAllBooks = createSelector<
   Record<string, ReadingListItem>,
   ReadingListBook[]
 >(getBooks, getReadingListEntities, (books, entities) => {
-  return books.map(b => ({ ...b, isAdded: Boolean(entities[b.id]) }));
+  return books.map(book => ({ ...book, isAdded: Boolean(entities[book.id]) }));
 });
 
 export const getReadingList = createSelector(getReadingListState, selectAll);

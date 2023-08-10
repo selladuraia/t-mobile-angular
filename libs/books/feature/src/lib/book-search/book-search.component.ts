@@ -21,6 +21,7 @@ export class BookSearchComponent implements OnInit {
   searchForm = this.fb.group({
     term: ''
   });
+  $getAllBooks: any;
 
   constructor(
     private readonly store: Store,
@@ -32,7 +33,7 @@ export class BookSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.select(getAllBooks).subscribe(books => {
+    this.$getAllBooks = this.store.select(getAllBooks).subscribe(books => {
       this.books = books;
     });
   }
@@ -58,5 +59,9 @@ export class BookSearchComponent implements OnInit {
     } else {
       this.store.dispatch(clearSearch());
     }
+  }
+
+  ngOnDestroy(): void {
+    this.$getAllBooks.unsubscribe();
   }
 }
